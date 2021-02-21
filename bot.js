@@ -21,10 +21,17 @@ for (const file of commandFiles) {
 
 client.on('ready', () => {
     console.log("Transponder squawking!");
-})
+
+    client.user.setPresence({
+        status: 'dnd',
+        game: {
+            name: 'type "^play {song}"',
+            type: "WATCHING"
+        }
+    });
+});
 
 client.on('message', message => {
-
     // argument handler
     let args = message.content.substring(prefix.length).split(" ");
 
