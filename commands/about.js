@@ -5,7 +5,7 @@ module.exports = {
         const aboutMessage = new Discord.MessageEmbed()
 	        .setColor('#0099ff')
 	        .setTitle('About Bot')
-	        .setDescription('jank')
+	        .setDescription('^play\n^stop\n^skip')
 	        .setFooter(`build ${version} || this bot is based`);
 
 		message.channel.send(aboutMessage);
