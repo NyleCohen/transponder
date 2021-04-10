@@ -25,7 +25,7 @@ client.on('ready', () => {
     client.user.setPresence({
         status: 'dnd',
         game: {
-            name: 'type "^play {song}"',
+            name: 'type ^play {song}',
             type: "WATCHING"
         }
     });
@@ -37,11 +37,12 @@ client.on('message', message => {
 
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
-    const command = args.shift().toLowerCase();
+    const cmd = args.shift().toLowerCase();
+    const command = client.commands.get(cmd) || client.commands.find(a => a.aliases && a.aliases.includes(cmd));
 
     // Executes a module and passes args
     try {
-        client.commands.get(command).execute(message, args, Discord, client, version);
+        command.execute(message, args, Discord, client, version, cmd);
     } catch (error) {
         //Prints unsuccesful execution to user
         console.error(error);
