@@ -5,7 +5,7 @@ const queue = new Map();
 
 module.exports = {
     name: 'play',
-    aliases: ['play', 'skip', 'stop'],
+    aliases: ['play', 'skip', 'stop', 'p', 'fuckoff', 's'],
     description: 'Advanced music bot',
     async execute(message, args, Discord, client, version, cmd) {
         const voiceChannel = message.member.voice.channel;
@@ -15,7 +15,7 @@ module.exports = {
 
         const serverQueue = queue.get(message.guild.id);
 
-        if (cmd === 'play') {
+        if (cmd === 'play' || cmd === 'p') {
             if (!args.length) return message.channel.send('No video!');
             let song = {};
 
@@ -64,11 +64,11 @@ module.exports = {
             }
         }
 
-        else if (cmd === 'skip') {
+        else if (cmd === 'skip' || cmd === 's') {
             skipSong(message, serverQueue);
         }
 
-        else if (cmd === 'stop') {
+        else if (cmd === 'stop' || cmd === 'fuckoff') {
             stopSong(message, serverQueue);
         }
     }
